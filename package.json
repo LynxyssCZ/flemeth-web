@@ -1,0 +1,44 @@
+{
+  "name": "flemeth-web",
+  "version": "1.0.0",
+  "description": "Flemeth web interface based on react",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^2.10.2",
+    "classnames": "^2.2.0",
+    "history": "^1.12.6",
+    "immutable": "^3.7.5",
+    "joi": "^6.9.1",
+    "moment": "^2.10.6",
+    "object-assign": "^4.0.1",
+    "react": "^0.14.0",
+    "react-router": "^1.0.0-rc3"
+  },
+  "devDependencies": {
+    "bourbon": "^4.2.6",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "jsx-loader": "^0.13.2",
+    "node-libs-browser": "^0.5.3",
+    "require-dir": "^0.3.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LynxyssCZ/flemeth-web.git"
+  },
+  "author": "LynxyssCZ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LynxyssCZ/flemeth-web/issues"
+  },
+  "homepage": "https://github.com/LynxyssCZ/flemeth-web#readme"
+}

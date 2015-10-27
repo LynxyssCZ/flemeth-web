@@ -1,0 +1,42 @@
+{
+  "dstDir": "./dist/",
+  "browserify": {
+    "minify": true,
+    "mangle": false,
+    "makeMaps": true,
+    "chunks": {
+      "app": "./public/js/index.js",
+      "vendor": ["classnames", "object-assign", "url", "immutable", "react", "bluebird", "moment"]
+    },
+    "externals": {
+      "react": "React"
+    },
+    "commonChunks": ["vendor"]
+  },
+  "bower": {
+    "copiedDirs": [
+      "js",
+      "css",
+      "fonts"
+    ],
+    "fileTypes": {
+      ".js": "js",
+      ".css": "css"
+    },
+    "copyMaps": true
+  },
+  "assets": {
+    "componentsDir": "./bower_components",
+    "rootDir": "./public",
+    "partials": {
+      "src": "html",
+      "dst": "html",
+      "extension": "html"
+    },
+    "images": {
+      "src": "img",
+      "dst": "img",
+      "extension": "*"
+    }
+  }
+}
