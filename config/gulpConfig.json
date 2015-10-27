@@ -1,11 +1,11 @@
 {
-  "dstDir": "./dist/",
+  "dstDir": "./dist/client/",
   "browserify": {
     "minify": true,
     "mangle": false,
     "makeMaps": true,
     "chunks": {
-      "app": "./public/js/index.js",
+      "app": "./src/client/js/index.js",
       "vendor": ["classnames", "object-assign", "url", "immutable", "react", "bluebird", "moment"]
     },
     "externals": {
@@ -27,7 +27,7 @@
   },
   "assets": {
     "componentsDir": "./bower_components",
-    "rootDir": "./public",
+    "rootDir": "./src/client",
     "partials": {
       "src": "html",
       "dst": "html",

@@ -3,7 +3,7 @@ var webpack = require("webpack");
 var config = require('../config/gulpConfig.json');
 var ifyConfig = config.browserify;
 
-var outputPath = 'dist/js/';
+var outputPath = 'dist/client/js/';
 
 var entry = {};
 
@@ -13,6 +13,15 @@ for (var chunk in ifyConfig.chunks) {
 
 module.exports = {
 	entry: entry,
+	module: {
+		loaders: [
+			{
+				//tell webpack to use jsx-loader for all *.jsx files
+				test: /\.jsx$/,
+				loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+			}
+		]
+	},
 	output: {
 		path: path.join(__dirname, '..', outputPath),
 		publicPath: path.join('/', outputPath),
@@ -24,7 +33,10 @@ module.exports = {
 		alias: ifyConfig.aliases
 	},
 	externals: ifyConfig.externals,
-	plugins: getPlugins()
+	plugins: getPlugins(),
+	resolve: {
+		extension: ['', '.js', '.jsx']
+	}
 }
 
 function getPlugins() {

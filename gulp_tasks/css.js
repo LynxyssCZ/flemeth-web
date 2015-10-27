@@ -8,11 +8,11 @@ var concatCss = require('gulp-concat-css');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('css', function() {
-	return gulp.src('./public/css/**/*.scss')
+	return gulp.src('./src/client/css/**/*.scss')
 		.pipe(sass({
 			includePaths: require('bourbon').includePaths
 		}))
 		.pipe(sourcemaps.write())
 		.pipe(concatCss('app.css'))
-		.pipe(gulp.dest('./dist/css'));
+		.pipe(gulp.dest('./dist/client/css'));
 });
