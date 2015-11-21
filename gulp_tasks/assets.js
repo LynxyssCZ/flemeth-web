@@ -48,5 +48,5 @@ var getGlob = function(config) {
 	glob += '' + config.src + '';
 	glob += '/**/*.' + config.extension;
 
-	return glob
+	return glob;
 };

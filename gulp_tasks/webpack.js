@@ -1,8 +1,4 @@
-/**
- * Created by jbarot on 8.2.15.
- */
 'use strict';
-var path = require('path');
 var webpack = require('webpack');
 var gulp = require('gulp');
 var gutil = require('gulp-util');

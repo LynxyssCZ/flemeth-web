@@ -1,5 +1,4 @@
 'use strict';
-var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var gulp = require('gulp');
@@ -10,20 +9,20 @@ var config = require('./webpack.settings');
 gulp.task('dev-server',[
 	'webpack-dev-server',
 	'watchCss'
-], function(callback) {
+], function() {
 
 });
 
-gulp.task('watchCss', function(callback) {
+gulp.task('watchCss', function() {
 	var watcher = gulp.watch('./public/css/**/*.scss', ['css']);
 
-	watcher.on('change', function(event) {});
-	watcher.on('error', function(err) {
+	watcher.on('change', function() {});
+	watcher.on('error', function() {
 		console.log(arguments);
 	});
 });
 
-gulp.task('webpack-dev-server', function(callback) {
+gulp.task('webpack-dev-server', function() {
 	// Start a webpack-dev-server
 	var webpackCfg = Object.create(config);
 //	config.output.path = path.join(__dirname, 'dist/js');

@@ -8,7 +8,9 @@ var outputPath = 'dist/client/js/';
 var entry = {};
 
 for (var chunk in ifyConfig.chunks) {
-	entry[chunk] = ifyConfig.chunks[chunk];
+	if (ifyConfig.hasOwnProperty(chunk)) {
+		entry[chunk] = ifyConfig.chunks[chunk];
+	}
 }
 
 module.exports = {
@@ -29,15 +31,13 @@ module.exports = {
 		chunkFilename: "[id].bundle.js",
 		sourceMapFilename: '[file].map'
 	},
-	resolve: {
-		alias: ifyConfig.aliases
-	},
 	externals: ifyConfig.externals,
 	plugins: getPlugins(),
 	resolve: {
+		alias: ifyConfig.aliases,
 		extension: ['', '.js', '.jsx']
 	}
-}
+};
 
 function getPlugins() {
 	var plugins = [];

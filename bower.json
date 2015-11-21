@@ -1,0 +1,25 @@
+{
+  "name": "flemeth-web",
+  "main": "index.js",
+  "version": "1.0.0",
+  "authors": [
+    "Jakub Barot <lynxysscz@gmail.com>"
+  ],
+  "description": "Web frontend for Flemeth",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3"
+  },
+  "moduleType": [
+    "node"
+  ]
+}
