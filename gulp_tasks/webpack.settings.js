@@ -8,9 +8,7 @@ var outputPath = 'dist/client/js/';
 var entry = {};
 
 for (var chunk in ifyConfig.chunks) {
-	if (ifyConfig.hasOwnProperty(chunk)) {
-		entry[chunk] = ifyConfig.chunks[chunk];
-	}
+	entry[chunk] = ifyConfig.chunks[chunk];
 }
 
 module.exports = {
@@ -34,8 +32,7 @@ module.exports = {
 	externals: ifyConfig.externals,
 	plugins: getPlugins(),
 	resolve: {
-		alias: ifyConfig.aliases,
-		extension: ['', '.js', '.jsx']
+		extensions: ['', '.js', '.jsx']
 	}
 };
 

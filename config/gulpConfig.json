@@ -6,7 +6,7 @@
     "makeMaps": true,
     "chunks": {
       "app": "./src/client/js/index.js",
-      "vendor": ["classnames", "object-assign", "url", "immutable", "react", "bluebird", "moment"]
+      "vendor": ["classnames", "object-assign", "url", "immutable", "react", "react-router", "bluebird", "moment"]
     },
     "externals": {
       "react": "React"
