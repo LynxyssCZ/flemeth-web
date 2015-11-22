@@ -1,5 +1,5 @@
 var path = require('path');
-var routes = ['/', '/zones'];
+var routes = ['/', '/zones', '/sensors', '/schedules'];
 
 var assetsRoot = '/dist';
 
