@@ -22,7 +22,7 @@ var links = [
 var nunjucks = require('nunjucks-hapi');
 nunjucks.configure({
 	watch: false
-})
+});
 
 var register = function(server, options, next) {
 	server.views({

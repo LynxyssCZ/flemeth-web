@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var gulp = require('gulp');
@@ -31,13 +32,15 @@ gulp.task('webpack-dev-server', function() {
 
 	var compiler = webpack(webpackCfg);
 
-	new WebpackDevServer(compiler, {
+	var server = new WebpackDevServer(compiler, {
 		publicPath: webpackCfg.output.publicPath,
 		stats: {
 			colors: true
 		}
-	}).listen(8090, 'localhost', function(err) {
+	});
+
+	server.listen(8090, 'localhost', function(err) {
 		if(err) throw new gutil.PluginError('webpack-dev-server', err);
-		gutil.log('[webpack-dev-server]', 'http://localhost:8090/webpack-dev-server/index.html');
+		gutil.log('[webpack-dev-server]', 'Server from ' + webpackCfg.output.publicPath);
 	});
 });
