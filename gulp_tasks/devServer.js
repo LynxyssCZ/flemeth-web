@@ -27,7 +27,7 @@ gulp.task('webpack-dev-server', function() {
 	var webpackCfg = Object.create(config);
 //	config.output.path = path.join(__dirname, 'dist/js');
 
-	// webpackCfg.entry.app.unshift('webpack-dev-server/client?http://localhost:8090');
+	webpackCfg.entry.app.unshift('webpack-dev-server/client?http://127.0.0.1:8090');
 
 	var compiler = webpack(webpackCfg);
 

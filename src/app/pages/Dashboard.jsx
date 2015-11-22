@@ -21,5 +21,5 @@ Dashboard.prototype.getChildContext = function () {
 };
 
 Dashboard.prototype.render = function () {
-	return <h2>Dashboard</h2>;
+	return <h2>Dashboard lol</h2>;
 };

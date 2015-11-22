@@ -8,15 +8,12 @@
     "classnames": "^2.2.0",
     "history": "^1.12.6",
     "immutable": "^3.7.5",
-    "inert": "^3.2.0",
-    "joi": "^6.9.1",
     "moment": "^2.10.6",
     "nunjucks-hapi": "^1.2.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.0-rc3",
-    "vision": "^4.0.1"
+    "react-router": "^1.0.0-rc3"
   },
   "devDependencies": {
     "bourbon": "^4.2.6",
@@ -27,10 +24,13 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "hapi": "^11.1.2",
+    "hapi": "^10.4.1",
+    "inert": "^3.2.0",
+    "joi": "^6.9.1",
     "jsx-loader": "^0.13.2",
     "node-libs-browser": "^0.5.3",
     "require-dir": "^0.3.0",
+    "vision": "^3.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
