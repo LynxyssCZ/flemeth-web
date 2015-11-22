@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title | title}}</title>
+	<base href="/">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% for link in links %}
+		<link rel="{{ link.type }}" href="{{ link.href }}">
+	{% endfor %}
+</head>
+<body>
+	<div id="app-container"></div>
+	{% for script in scripts %}
+	{%if script.path %}
+		<script src="{{ script.path }}"></script>
+	{% else %}
+		<script>{{ script.value | safe }}</script>
+	{% endif %}
+	{% endfor %}
+</body>
+</html>

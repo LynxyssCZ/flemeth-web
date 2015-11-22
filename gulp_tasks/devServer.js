@@ -27,11 +27,12 @@ gulp.task('webpack-dev-server', function() {
 	var webpackCfg = Object.create(config);
 //	config.output.path = path.join(__dirname, 'dist/js');
 
+	// webpackCfg.entry.app.unshift('webpack-dev-server/client?http://localhost:8090');
+
 	var compiler = webpack(webpackCfg);
 
 	new WebpackDevServer(compiler, {
 		publicPath: webpackCfg.output.publicPath,
-		https: true,
 		stats: {
 			colors: true
 		}

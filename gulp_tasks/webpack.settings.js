@@ -1,5 +1,5 @@
-var path = require("path");
-var webpack = require("webpack");
+var path = require('path');
+var webpack = require('webpack');
 var config = require('../config/gulpConfig.json');
 var ifyConfig = config.browserify;
 
@@ -26,7 +26,7 @@ module.exports = {
 		path: path.join(__dirname, '..', outputPath),
 		publicPath: path.join('/', outputPath),
 		filename: '[name].min.js',
-		chunkFilename: "[id].bundle.js",
+		chunkFilename: '[id].bundle.js',
 		sourceMapFilename: '[file].map'
 	},
 	externals: ifyConfig.externals,
@@ -48,7 +48,7 @@ function getPlugins() {
 	}
 
 	if (ifyConfig.makeMaps) {
-		plugins.push(new webpack.SourceMapDevToolPlugin('[file].map', null, "[resource]", "[resource]"));
+		plugins.push(new webpack.SourceMapDevToolPlugin('[file].map', null, '[resource]', '[resource]'));
 	}
 
 	plugins.push(new webpack.optimize.CommonsChunkPlugin(ifyConfig.commonChunks, '[name].min.js'));
