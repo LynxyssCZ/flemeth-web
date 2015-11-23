@@ -13,5 +13,5 @@ SensorsListPage.proptypes = {
 };
 
 SensorsListPage.prototype.render = function () {
-	return <h2>SensorsList</h2>;
+	return <span>SensorsList</span>;
 };

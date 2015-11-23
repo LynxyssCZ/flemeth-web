@@ -13,5 +13,5 @@ ZonesListPage.proptypes = {
 };
 
 ZonesListPage.prototype.render = function () {
-	return <h2>ZonesList</h2>;
+	return <span>ZonesList</span>;
 };

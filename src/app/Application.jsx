@@ -20,7 +20,6 @@ Application.contextTypes = {
 Application.prototype.render = function () {
 	return <div className='flemeth-app container'>
 		<Navbar currentPath={this.props.location.pathname} />
-		<h2>Hello - App</h2>
 		{ this.props.children || 'No page' }
 	</div>;
 };

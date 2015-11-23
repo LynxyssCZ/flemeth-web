@@ -13,5 +13,5 @@ ZoneDetailsPage.proptypes = {
 };
 
 ZoneDetailsPage.prototype.render = function () {
-	return <h2>Zone</h2>;
+	return <span>Zone</span>;
 };
