@@ -21,5 +21,8 @@ ZonesPage.prototype.getChildContext = function () {
 };
 
 ZonesPage.prototype.render = function () {
-	return <h2>ZonesPage meh</h2>;
+	return <div>
+			<h2>ZonesPage</h2>
+			{ this.props.children }
+		</div>;
 };

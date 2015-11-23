@@ -2,16 +2,16 @@ var inherits = require('util').inherits;
 var React = require('react');
 
 
-var SensorListPage = function(props, context) {
+var SensorsListPage = function(props, context) {
 	React.Component.call(this, props, context);
-}; SensorListPage.prototype.constructor = SensorListPage;
-inherits(SensorListPage, React.Component);
-module.exports = SensorListPage;
+}; SensorsListPage.prototype.constructor = SensorsListPage;
+inherits(SensorsListPage, React.Component);
+module.exports = SensorsListPage;
 
-SensorListPage.proptypes = {
+SensorsListPage.proptypes = {
 
 };
 
-SensorListPage.prototype.render = function () {
-	return <h2>SensorListPage</h2>;
+SensorsListPage.prototype.render = function () {
+	return <h2>SensorsList</h2>;
 };
