@@ -1,6 +1,5 @@
 // Import base variables and stuff
 @import "partials/base";
 
-body {
-	font-weight: $light;
-}
+// Partials
+@import "partials/app_base"

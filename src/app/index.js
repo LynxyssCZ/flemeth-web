@@ -1,3 +1,5 @@
 module.exports = {
-	Routes: require('./Routes')
+	routes: require('./Routes'),
+	Context: require('./AppContext'),
+	FluxCore: require('./fluxCore')
 };

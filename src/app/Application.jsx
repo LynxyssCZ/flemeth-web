@@ -1,5 +1,6 @@
 var inherits = require('util').inherits;
 var React = require('react');
+var Navbar = require('./components/Navbar');
 
 
 var Application = function(props, context) {
@@ -12,16 +13,13 @@ Application.proptypes = {
 
 };
 
-Application.childContextTypes = {
-
-};
-
-Application.prototype.getChildContext = function () {
-	return {};
+Application.contextTypes = {
+	container: React.PropTypes.object.isRequired
 };
 
 Application.prototype.render = function () {
-	return <div>
+	return <div className='flemeth-app container'>
+		<Navbar currentPath={this.props.location.pathname} />
 		<h2>Hello - App</h2>
 		{ this.props.children || 'No page' }
 	</div>;

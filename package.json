@@ -6,6 +6,7 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "classnames": "^2.2.0",
+    "fluxerino": "lynxysscz/fluxerino",
     "history": "^1.12.6",
     "immutable": "^3.7.5",
     "moment": "^2.10.6",
@@ -13,7 +14,8 @@
     "object-assign": "^4.0.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.0-rc3"
+    "react-router": "^1.0.0-rc3",
+    "superagent": "^1.4.0"
   },
   "devDependencies": {
     "bourbon": "^4.2.6",

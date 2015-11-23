@@ -21,5 +21,8 @@ SensorsPage.prototype.getChildContext = function () {
 };
 
 SensorsPage.prototype.render = function () {
-	return <h2>SensorsPage meh</h2>;
+	return <div>
+			<h2>SensorsPage</h2>
+			{ this.props.children }
+		</div>;
 };
