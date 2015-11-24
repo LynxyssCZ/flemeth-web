@@ -26,18 +26,12 @@ gulp.task('watchCss', function() {
 gulp.task('webpack-dev-server', function() {
 	// Start a webpack-dev-server
 	var webpackCfg = Object.create(config);
-//	config.output.path = path.join(__dirname, 'dist/js');
 
 	webpackCfg.entry.app.unshift('webpack-dev-server/client?http://127.0.0.1:8090');
 
 	var compiler = webpack(webpackCfg);
 
-	var server = new WebpackDevServer(compiler, {
-		publicPath: webpackCfg.output.publicPath,
-		stats: {
-			colors: true
-		}
-	});
+	var server = new WebpackDevServer(compiler, webpackCfg.devServer);
 
 	server.listen(8090, 'localhost', function(err) {
 		if(err) throw new gutil.PluginError('webpack-dev-server', err);

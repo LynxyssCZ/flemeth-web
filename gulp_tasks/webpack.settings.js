@@ -33,6 +33,12 @@ module.exports = {
 	plugins: getPlugins(),
 	resolve: {
 		extensions: ['', '.js', '.jsx']
+	},
+	devServer: {
+		publicPath: path.join('/', outputPath),
+		stats: {
+			colors: true
+		}
 	}
 };
 

@@ -8,10 +8,12 @@ var DashboardPage = function(props, context) {
 inherits(DashboardPage, React.Component);
 module.exports = DashboardPage;
 
+// Router props
 DashboardPage.proptypes = {
 
 };
 
+// Optional dashboard context stuff
 DashboardPage.childContextTypes = {
 
 };
@@ -21,5 +23,7 @@ DashboardPage.prototype.getChildContext = function () {
 };
 
 DashboardPage.prototype.render = function () {
-	return <h2>DashboardPage lol</h2>;
+	return <div className='dashboard-page'>
+		<span>Dashboard goes here, woot?</span>
+	</div>;
 };

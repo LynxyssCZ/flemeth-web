@@ -9,9 +9,8 @@ var Application = function(props, context) {
 inherits(Application, React.Component);
 module.exports = Application;
 
-Application.proptypes = {
-
-};
+// Router related props
+Application.proptypes = {};
 
 Application.contextTypes = {
 	container: React.PropTypes.object.isRequired
@@ -20,6 +19,6 @@ Application.contextTypes = {
 Application.prototype.render = function () {
 	return <div className='flemeth-app container'>
 		<Navbar currentPath={this.props.location.pathname} />
-		{ this.props.children || 'No page' }
+		{ this.props.children || 'No page :-<' }
 	</div>;
 };

@@ -7,6 +7,7 @@ var server = new hapi.Server();
 server.connection({ host: '0.0.0.0', port: 8097 });
 server.register([
 	require('inert'),
+	require('h2o2'),
 	require('vision'),
 	{
 		register: web,
@@ -16,6 +17,19 @@ server.register([
 	}
 ], function(err) {
 	if (!err) {
+
+		server.route({
+			path: '/api/{path*}',
+			method: '*',
+			handler: {
+				proxy: {
+					host: '127.0.0.1',
+					port: '8098',
+					protocol: 'http'
+				}
+			}
+		});
+
 		server.start(function() {
 			console.log('Server running at:', server.info.uri);
 		});

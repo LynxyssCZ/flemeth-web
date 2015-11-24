@@ -5,9 +5,9 @@ var routes = [{
 		component: require('./pages/DashboardPage')
 	},
 	childRoutes: [
-		require('./pages/sensors')('/sensors'),
-		require('./pages/schedules')('/schedules'),
-		require('./pages/zones')('/zones')
+		require('./pages/sensors')('sensors'),
+		require('./pages/schedules')('schedules'),
+		require('./pages/zones')('zones')
 	]
 }];
 
