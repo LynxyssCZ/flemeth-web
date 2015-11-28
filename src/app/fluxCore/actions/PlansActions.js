@@ -2,24 +2,27 @@ var assign = require('object-assign');
 
 
 module.exports = {
+	load: function() {
+		return this.api.get('plans/').then(onPlansResponse);
+	},
 	create: function(plan) {
 		return [
 			{ plans: [assign({ loading: true, id: generateKey() }, plan)] },
-			this.api.post('plans', plan).then(onPlansResponse)
+			this.api.post('plans/', plan).then(onPlansResponse)
 		];
 	},
 
 	update: function(plan) {
 		return [
 			{ plans: [ assign({loading: true}, plan) ] },
-			this.api.put('plans/' + plan.id, plan).then(onPlansResponse)
+			this.api.put('plans/' + plan.id + '/', plan).then(onPlansResponse)
 		];
 	},
 
-	delete: function(planId) {
+	remove: function(planId) {
 		return [
 			{ deletingPlans: [planId]},
-			this.api.put('plans/' + planId)
+			this.api.del('plans/' + planId + '/')
 			.then(function() {
 				return { deletedPlans: [planId] };
 			})

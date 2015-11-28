@@ -1,5 +1,4 @@
 var Map = require('immutable').Map;
-var RootActions = require('../actions').Root;
 var SettingsActions = require('../actions').Settings;
 
 function SettingsStore(type, payload, state) {
@@ -8,12 +7,14 @@ function SettingsStore(type, payload, state) {
 	}
 
 	switch (type) {
-		case SettingsActions.create.actionType:
-		case SettingsActions.update.actionType:
-			state = updateSettings(payload.settings, state);
+		case SettingsActions.load.actionType:
+			state = update(payload.settings, getDefaultState());
 			break;
-		case SettingsActions.delete.actionType:
-			state = deleteSettings(payload.deletedSettings, state);
+		case SettingsActions.update.actionType:
+			state = update(payload.settings, state);
+			break;
+		case SettingsActions.remove.actionType:
+			state = remove(payload.deletedSettings, state);
 			break;
 	}
 
@@ -26,20 +27,15 @@ function getDefaultState() {
 	return Map();
 }
 
-function deleteSettings(ids, state) {
-	if (ids) {
-		ids.forEach(function(settingId) {
-			state = state.delete(settingId);
-		});
-	}
-
-	return state;
+function createSetting(initialData) {
+	return Map(initialData);
 }
 
-function updateSettings(settings, state) {
+function update(settings, state) {
 	if (settings) {
 		settings.forEach(function(setting) {
 			var newSetting = createSetting(setting);
+
 			state = state.set(newSetting.get('key'), newSetting);
 		});
 	}
@@ -47,10 +43,12 @@ function updateSettings(settings, state) {
 	return state;
 }
 
-function createSetting(initialData) {
-	return Map({
-		key: initialData.key,
-		value: initialData.value,
-		loading: initialData.loading
-	});
+function remove(settings, state) {
+	if (settings) {
+		settings.forEach(function(settingId) {
+			state = state.delete(settingId);
+		});
+	}
+
+	return state;
 }

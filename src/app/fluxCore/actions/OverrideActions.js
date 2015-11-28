@@ -2,10 +2,13 @@ var assign = require('object-assign');
 
 
 module.exports = {
+	load: function() {
+		return this.api.get('override/').then(onOverrideResponse);
+	},
 	create: function(override) {
 		return [
 			{ override: assign({loading: true}, override) },
-			this.api.post('override', override)
+			this.api.post('override/', override)
 				.then(onOverrideResponse)
 		];
 	},
@@ -13,15 +16,15 @@ module.exports = {
 	update: function(override) {
 		return [
 			{ override: assign({loading: true}, override) },
-			this.api.put('override', override)
+			this.api.put('override/', override)
 				.then(onOverrideResponse)
 		];
 	},
 
-	delete: function() {
+	remove: function() {
 		return [
-			{override: {loading: true}},
-			this.api.delete('override')
+			{override: {loading: true, deleting: true}},
+			this.api.remove('override/')
 				.then(onOverrideResponse)
 		];
 	}

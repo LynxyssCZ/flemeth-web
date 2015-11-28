@@ -7,7 +7,9 @@ function TempCheckerStore(type, payload, state) {
 	}
 
 	switch (type) {
-
+		case TempCheckerActions.load.actionType:
+			state = Map(payload.tempChecker);
+			break;
 	}
 
 	return state;
@@ -17,9 +19,4 @@ module.exports = TempCheckerStore;
 
 function getDefaultState() {
 	return Map();
-}
-
-
-function update(newState) {
-	return Map(newState);
 }

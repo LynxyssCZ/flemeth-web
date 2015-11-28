@@ -3,11 +3,15 @@ var ReactDom = require('react-dom');
 var History = require('history/lib/createBrowserHistory');
 var Router = require('react-router').Router;
 var App = require('../../app');
-var core = new App.FluxCore({
+var ServerApi = require('./ServerApi');
 
+var api = new ServerApi({
+	base: 'http://127.0.0.1:8098/api/'
 });
 
-console.log(flattenRoutes(App.routes(), ''));
+var core = new App.FluxCore({
+	api: api
+});
 
 ReactDom.render(React.createElement(App.Context,
 	{
@@ -19,17 +23,21 @@ ReactDom.render(React.createElement(App.Context,
 	})
 ), document.getElementById('app-container'));
 
-function flattenRoutes(plainRoutes, root) {
-	return plainRoutes.reduce(function(reducedRoutes, route) {
-		var routes = [];
+window.core = core;
+window.api = api;
 
-		var routePath = (root + '/' +  route.path).replace('//', '/', 'g');
-		routes.push(routePath);
-
-		if (route.childRoutes) {
-			routes = routes.concat(flattenRoutes(route.childRoutes, routePath));
-		}
-
-		return reducedRoutes.concat(routes);
-	}, []);
-}
+//
+// function flattenRoutes(plainRoutes, root) {
+// 	return plainRoutes.reduce(function(reducedRoutes, route) {
+// 		var routes = [];
+//
+// 		var routePath = (root + '/' +  route.path).replace('//', '/', 'g');
+// 		routes.push(routePath);
+//
+// 		if (route.childRoutes) {
+// 			routes = routes.concat(flattenRoutes(route.childRoutes, routePath));
+// 		}
+//
+// 		return reducedRoutes.concat(routes);
+// 	}, []);
+// }

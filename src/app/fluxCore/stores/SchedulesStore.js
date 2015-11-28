@@ -1,7 +1,5 @@
 var Map = require('immutable').Map;
-var RootActions = require('../actions').Root;
 var SchedulesActions = require('../actions').Schedules;
-
 
 function SchedulesStore(type, payload, state) {
 	if (!state) {
@@ -9,13 +7,15 @@ function SchedulesStore(type, payload, state) {
 	}
 
 	switch (type) {
-		case RootActions.loadFromDB.actionType:
-		case SchedulesActions.create.actionType:
-		case SchedulesActions.update.actionType:
-			state = updateSchedules(payload.schedules, state);
+		case SchedulesActions.load.actionType:
+			state = update(payload.schedules, getDefaultState());
 			break;
-		case SchedulesActions.delete.actionType:
-			state = removeSchedules(payload.deletedSchedules, state);
+		case SchedulesActions.update.actionType:
+		case SchedulesActions.create.actionType:
+			state = update(payload.schedules, state);
+			break;
+		case SchedulesActions.remove.actionType:
+			state = remove(payload.deletedSchedules, state);
 			break;
 	}
 
@@ -24,34 +24,18 @@ function SchedulesStore(type, payload, state) {
 
 module.exports = SchedulesStore;
 
-
 function getDefaultState() {
-	return Map({
-		default: createSchedule({
-			id: 'default',
-			name: 'default',
-			startTemp: 20.5,
-			hysteresis: 2,
-			changes: []
-		})
-	});
+	return Map();
 }
 
-function createSchedule(scheduleData) {
-	return Map({
-		id: scheduleData.id.toString(),
-		name: scheduleData.name,
-		startTemp: scheduleData.startTemp,
-		hysteresis: scheduleData.hysteresis,
-		changes: scheduleData.changes
-	});
+function createSchedule(initialData) {
+	return Map(initialData);
 }
 
-function updateSchedules(schedules, state) {
+function update(schedules, state) {
 	if (schedules) {
 		schedules.forEach(function(schedule) {
 			var newSchedule;
-
 			if (state.has(schedule.id)) {
 				newSchedule = state.get(schedule.id).merge(Map(schedule));
 			}
@@ -66,10 +50,12 @@ function updateSchedules(schedules, state) {
 	return state;
 }
 
-function removeSchedules(schedules, state) {
-	schedules.forEach(function(scheduleId) {
-		state = state.delete(scheduleId);
-	});
+function remove(schedules, state) {
+	if (schedules) {
+		schedules.forEach(function(scheduleId) {
+			state = state.delete(scheduleId);
+		});
+	}
 
 	return state;
 }

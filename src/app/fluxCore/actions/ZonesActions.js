@@ -2,24 +2,27 @@ var assign = require('object-assign');
 
 
 module.exports = {
+	load: function() {
+		return this.api.get('zones/').then(onZonesResponse);
+	},
 	create: function(zone) {
 		return [
 			{ zones: [assign({ loading: true, id: generateKey() }, zone)] },
-			this.api.post('zones', zone).then(onZonesResponse)
+			this.api.post('zones/', zone).then(onZonesResponse)
 		];
 	},
 
 	update: function(zone) {
 		return [
 			{ zones: [ assign({loading: true}, zone) ] },
-			this.api.put('zones/' + zone.id, zone).then(onZonesResponse)
+			this.api.put('zones/' + zone.id + '/', zone).then(onZonesResponse)
 		];
 	},
 
-	delete: function(zoneId) {
+	remove: function(zoneId) {
 		return [
 			{ deletingZones: [zoneId]},
-			this.api.put('zones/' + zoneId)
+			this.api.del('zones/' + zoneId + '/')
 			.then(function() {
 				return { deletedZones: [zoneId] };
 			})

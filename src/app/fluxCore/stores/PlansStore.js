@@ -1,19 +1,21 @@
 var Map = require('immutable').Map;
 var PlansActions = require('../actions').Plans;
 
-
 function PlansStore(type, payload, state) {
 	if (!state) {
 		state = getDefaultState();
 	}
 
 	switch (type) {
-		case PlansActions.create.actionType:
-		case PlansActions.update.actionType:
-			state = updatePlans(payload.plans, state);
+		case PlansActions.load.actionType:
+			state = update(payload.plans, getDefaultState());
 			break;
-		case PlansActions.delete.actionType:
-			state = removePlans(payload.deletedPlans, state);
+		case PlansActions.update.actionType:
+		case PlansActions.create.actionType:
+			state = update(payload.plans, state);
+			break;
+		case PlansActions.remove.actionType:
+			state = remove(payload.deletedPlans, state);
 			break;
 	}
 
@@ -22,27 +24,15 @@ function PlansStore(type, payload, state) {
 
 module.exports = PlansStore;
 
-
 function getDefaultState() {
-	return Map({
-		default: createPlan({
-			id: 'default',
-			name: 'default',
-			loading: true
-		})
-	});
+	return Map();
 }
 
-function createPlan(planData) {
-	return Map({
-		id: planData.id.toString(),
-		name: planData.name,
-		schedules: planData.schedules,
-		loading: planData.loading
-	});
+function createPlan(initialData) {
+	return Map(initialData);
 }
 
-function updatePlans(plans, state) {
+function update(plans, state) {
 	if (plans) {
 		plans.forEach(function(plan) {
 			var newPlan;
@@ -60,10 +50,12 @@ function updatePlans(plans, state) {
 	return state;
 }
 
-function removePlans(plans, state) {
-	plans.forEach(function(planId) {
-		state = state.delete(planId);
-	});
+function remove(plans, state) {
+	if (plans) {
+		plans.forEach(function(planId) {
+			state = state.delete(planId);
+		});
+	}
 
 	return state;
 }

@@ -7,17 +7,16 @@ function SwitcherStore(type, payload, state) {
 	}
 
 	switch (type) {
-
+		case SwitcherActions.load.actionType:
+			state = Map(payload.switcher);
+			break;
 	}
 
 	return state;
 }
+
 module.exports = SwitcherStore;
 
 function getDefaultState() {
 	return Map();
-}
-
-function updateSwitcher(value) {
-	return Map(value);
 }
