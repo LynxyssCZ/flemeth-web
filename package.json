@@ -2,7 +2,23 @@
   "name": "flemeth-web",
   "version": "1.0.0",
   "description": "Flemeth web interface based on react",
+  "author": "LynxyssCZ",
   "main": "index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/LynxyssCZ/flemeth-web#readme",
+  "bugs": {
+    "url": "https://github.com/LynxyssCZ/flemeth-web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LynxyssCZ/flemeth-web.git"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha test --recursive --colors",
+    "lint": "eslint ./src",
+    "js:watch": "webpack --colors --watch --config ./gulp_tasks/webpack.settings.js"
+  },
   "dependencies": {
     "bluebird": "^2.10.2",
     "classnames": "^2.2.0",
@@ -12,6 +28,7 @@
     "moment": "^2.10.6",
     "nunjucks-hapi": "^1.2.1",
     "object-assign": "^4.0.1",
+    "object-hash": "^0.9.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-router": "^1.0.0-rc3",
@@ -19,6 +36,7 @@
   },
   "devDependencies": {
     "bourbon": "^4.2.6",
+    "chai": "^3.4.1",
     "del": "^2.0.2",
     "eslint": "^1.10.1",
     "eslint-plugin-react": "^3.10.0",
@@ -32,25 +50,13 @@
     "inert": "^3.2.0",
     "joi": "^6.9.1",
     "jsx-loader": "^0.13.2",
+    "mocha": "^2.3.4",
     "node-libs-browser": "^0.5.3",
     "require-dir": "^0.3.0",
     "vision": "^3.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LynxyssCZ/flemeth-web.git"
-  },
-  "author": "LynxyssCZ",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/LynxyssCZ/flemeth-web/issues"
-  },
-  "homepage": "https://github.com/LynxyssCZ/flemeth-web#readme",
   "engines": {
     "node": "^0.12.7",
     "npm": "^3.3.9"
