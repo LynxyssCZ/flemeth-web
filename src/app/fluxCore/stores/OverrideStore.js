@@ -1,5 +1,7 @@
 var Map = require('immutable').Map;
 var OverrideActions = require('../actions').Override;
+var RootActions = require('../actions').Root;
+
 
 function OverridesStore(type, payload, state) {
 	if (typeof state === 'undefined') {
@@ -10,6 +12,7 @@ function OverridesStore(type, payload, state) {
 		case OverrideActions.load.actionType:
 		case OverrideActions.update.actionType:
 		case OverrideActions.create.actionType:
+		case RootActions.loadDashboard.actionType:
 			state = update(payload.override, state);
 			break;
 		case OverrideActions.remove.actionType:

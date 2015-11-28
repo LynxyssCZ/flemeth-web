@@ -1,5 +1,7 @@
 var Map = require('immutable').Map;
 var ZonesActions = require('../actions').Zones;
+var RootActions = require('../actions').Root;
+
 
 function ZonesStore(type, payload, state) {
 	if (!state) {
@@ -8,6 +10,7 @@ function ZonesStore(type, payload, state) {
 
 	switch (type) {
 		case ZonesActions.load.actionType:
+		case RootActions.loadDashboard.actionType:
 			state = update(payload.zones, getDefaultState());
 			break;
 		case ZonesActions.update.actionType:

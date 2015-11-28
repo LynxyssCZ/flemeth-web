@@ -1,7 +1,5 @@
 var Map = require('immutable').Map;
-var SwitcherActions = require('../actions').Switcher;
 var RootActions = require('../actions').Root;
-
 
 function SwitcherStore(type, payload, state) {
 	if (!state) {
@@ -10,8 +8,7 @@ function SwitcherStore(type, payload, state) {
 
 	switch (type) {
 		case RootActions.loadDashboard.actionType:
-		case SwitcherActions.load.actionType:
-			state = Map(payload.switcher);
+			state = loadDashboard(payload.dashboard, state);
 			break;
 	}
 
@@ -21,5 +18,11 @@ function SwitcherStore(type, payload, state) {
 module.exports = SwitcherStore;
 
 function getDefaultState() {
-	return Map();
+	return Map({
+		dashboard: Map()
+	});
+}
+
+function loadDashboard(dashboard, state) {
+	return state.set('dashboard', Map(dashboard));
 }

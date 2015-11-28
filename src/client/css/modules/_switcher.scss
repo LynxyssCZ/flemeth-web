@@ -1,0 +1,24 @@
+.switcher-info {
+	.real-value,
+	.next-value,
+	.lock-info {
+		white-space: nowrap;
+		margin-right: 16px;
+	}
+
+	.real-value {
+		font-weight: bolder;
+
+		em {
+			font-weight: bold;
+
+			&.On {
+				color: blue;
+			}
+
+			&.Off {
+				color: red;
+			}
+		}
+	}
+}

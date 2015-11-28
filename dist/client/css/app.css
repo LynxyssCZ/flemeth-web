@@ -1,3 +1,31 @@
+.panel-heading h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.switcher-info .real-value,
+.switcher-info .next-value,
+.switcher-info .lock-info {
+  white-space: nowrap;
+  margin-right: 16px;
+}
+
+.switcher-info .real-value {
+  font-weight: bolder;
+}
+
+.switcher-info .real-value em {
+  font-weight: bold;
+}
+
+.switcher-info .real-value em.On {
+  color: blue;
+}
+
+.switcher-info .real-value em.Off {
+  color: red;
+}
+
 body {
   font-weight: 100;
 }

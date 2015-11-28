@@ -3,7 +3,7 @@
 module.exports = {
 	Override: require('./OverrideStore'),
 	Plans: require('./PlansStore'),
-
+	Root: require('./RootStore'),
 	Sensors: require('./SensorsStore'),
 
 	Settings: require('./SettingsStore'),

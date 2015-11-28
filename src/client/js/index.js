@@ -5,26 +5,24 @@ var Router = require('react-router').Router;
 var App = require('../../app');
 var ServerApi = require('./ServerApi');
 
-var api = new ServerApi({
-	base: 'http://127.0.0.1:8098/api/'
-});
-
-var core = new App.FluxCore({
-	api: api
-});
-
-ReactDom.render(React.createElement(App.Context,
-	{
-		container: core
-	},
-	React.createElement(Router, {
-		routes: App.routes(),
-		history: History()
-	})
-), document.getElementById('app-container'));
+var api = new ServerApi({base: 'http://flemeth:8098/api/'});
+var core = new App.FluxCore({api: api});
+core.init(renderApp);
 
 window.core = core;
 window.api = api;
+
+function renderApp() {
+	ReactDom.render(React.createElement(App.Context,
+		{
+			container: core
+		},
+		React.createElement(Router, {
+			routes: App.routes(),
+			history: History()
+		})
+	), document.getElementById('app-container'));
+}
 
 //
 // function flattenRoutes(plainRoutes, root) {
