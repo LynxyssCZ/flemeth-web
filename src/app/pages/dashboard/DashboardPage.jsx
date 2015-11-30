@@ -1,7 +1,12 @@
 var inherits = require('util').inherits;
 var React = require('react');
-var SwitcherInfo = require('../components/SwitcherInfo');
+var SwitcherInfo = require('./SwitcherInfo');
+var TempCheckerInfo = require('./TempCheckerInfo');
+var OverrideInfo = require('./OverrideInfo');
+var ZonesHistory = require('../../components/ZonesHistory');
+
 var maxAge = 5 * 60 * 1000;
+
 
 var DashboardPage = function(props, context) {
 	React.Component.call(this, props, context);
@@ -69,6 +74,9 @@ DashboardPage.prototype.isFresh = function (dashboardState) {
 
 DashboardPage.prototype.render = function () {
 	return <div className='dashboard-page'>
+		<ZonesHistory className='col-md-12'/>
+		<TempCheckerInfo className='col-md-4' tempChecker={this.state.TempChecker} zones={this.state.Zones} />
+		<OverrideInfo className='col-md-4' override={this.state.Override} />
 		<SwitcherInfo className='col-md-4' switcherState={this.state.Switcher} />
 	</div>;
 };

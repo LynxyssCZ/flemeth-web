@@ -5,7 +5,7 @@ var Router = require('react-router').Router;
 var App = require('../../app');
 var ServerApi = require('./ServerApi');
 
-var api = new ServerApi({base: '/api/'});
+var api = new ServerApi({base: 'http://flemeth:8098/api/'});
 var core = new App.FluxCore({api: api});
 core.init(renderApp);
 

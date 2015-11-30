@@ -2,7 +2,7 @@ var routes = [{
 	path: '/',
 	component: require('./Application'),
 	indexRoute: {
-		component: require('./pages/DashboardPage')
+		component: require('./pages/dashboard/DashboardPage')
 	},
 	childRoutes: [
 		require('./pages/sensors')('sensors'),

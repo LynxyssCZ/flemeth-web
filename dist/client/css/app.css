@@ -3,6 +3,16 @@
   margin-bottom: 0;
 }
 
+.override-info .panel-heading {
+  position: relative;
+}
+
+.override-info .override-buttons {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+
 .switcher-info .real-value,
 .switcher-info .next-value,
 .switcher-info .lock-info {
@@ -32,6 +42,16 @@ body {
 
 .flemeth-app {
   padding-top: 70px;
+}
+
+.value-on {
+  font-weight: bolder;
+  color: blue;
+}
+
+.value-off {
+  font-weight: bolder;
+  color: red;
 }
 
 body {
