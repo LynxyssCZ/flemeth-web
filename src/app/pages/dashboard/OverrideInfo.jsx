@@ -33,7 +33,7 @@ OverrideInfo.prototype.render = function () {
 OverrideInfo.prototype.renderButtons = function () {
 	var elements = [];
 
-	if (this.props.override) {
+	if (this.props.override !== false && this.props.override.has('value')) {
 		elements.push(<button key='update' type='button' className='btn btn-warning'>Update</button>);
 	}
 

@@ -34,10 +34,13 @@ function createOverride(initialData) {
 }
 
 function update(override, state) {
-	if (override) {
+	if (override && !state) {
 		state = createOverride(override);
 	}
-	else {
+	else if (override && state) {
+		state = state.merge(override);
+	}
+	else if (override === false) {
 		state = override;
 	}
 
