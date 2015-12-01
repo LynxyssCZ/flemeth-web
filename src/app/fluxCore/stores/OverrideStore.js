@@ -26,33 +26,40 @@ function OverridesStore(type, payload, state) {
 module.exports = OverridesStore;
 
 function getDefaultState() {
-	return Map();
-}
-
-function createOverride(initialData) {
-	return Map(initialData);
+	return Map({
+		reason: null,
+		value: null,
+		length: null,
+		created: null,
+		loading: true
+	});
 }
 
 function update(override, state) {
-	if (override && !state) {
-		state = createOverride(override);
+	if (!override) {
+		return state;
 	}
-	else if (override && state) {
+
+	if (override.loading) {
 		state = state.merge(override);
 	}
-	else if (override === false) {
-		state = override;
+	else {
+		state = Map(override);
 	}
 
 	return state;
 }
 
 function remove(override, state) {
-	if (override) {
-		state = state.merge(override);
+	if (!override) {
+		return state;
+	}
+
+	if (override.loading) {
+		state = getDefaultState();
 	}
 	else {
-		state = false;
+		state = Map(override);
 	}
 
 	return state;
