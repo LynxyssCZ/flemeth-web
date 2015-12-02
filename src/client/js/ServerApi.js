@@ -45,7 +45,7 @@ ServerApi.prototype.del = function (path) {
 ServerApi.prototype.request = function (req, callback) {
 	req.set('Accept', 'application/json')
 		.end(function(err, res) {
-			if (res.ok) {
+			if (!err && res.ok) {
 				return callback(null, res.body);
 			}
 
