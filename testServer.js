@@ -26,6 +26,7 @@ server.register([
 					host: '127.0.0.1',
 					port: '8098',
 					protocol: 'http',
+					passThrough: true,
 					xforward: true
 				}
 			}
