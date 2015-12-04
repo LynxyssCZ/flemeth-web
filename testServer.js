@@ -23,8 +23,8 @@ server.register([
 			method: '*',
 			handler: {
 				proxy: {
-					host: '127.0.0.1',
-					port: '8098',
+					host: process.env.HOST || '127.0.0.1',
+					port: process.env.PORT || '8098',
 					protocol: 'http',
 					passThrough: true,
 					xforward: true
