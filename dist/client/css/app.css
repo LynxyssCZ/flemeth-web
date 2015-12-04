@@ -3,6 +3,11 @@
   margin-bottom: 0;
 }
 
+.form-group.half {
+  display: inline-block;
+  width: 50%;
+}
+
 .override-info .panel-heading {
   position: relative;
 }

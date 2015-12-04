@@ -24,7 +24,7 @@ module.exports = {
 	remove: function() {
 		return [
 			{override: {loading: true, deleting: true}},
-			this.api.remove('override/')
+			this.api.del('override/')
 				.then(onOverrideResponse)
 		];
 	}
