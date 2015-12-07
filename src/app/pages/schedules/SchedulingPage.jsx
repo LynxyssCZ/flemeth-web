@@ -8,18 +8,17 @@ var SchedulingPage = function(props, context) {
 inherits(SchedulingPage, React.Component);
 module.exports = SchedulingPage;
 
-SchedulingPage.proptypes = {
+SchedulingPage.contextTypes = {
 
-};
-
-SchedulingPage.childContextTypes = {
-
-};
-
-SchedulingPage.prototype.getChildContext = function () {
-	return {};
 };
 
 SchedulingPage.prototype.render = function () {
-	return <h2>SchedulingPage</h2>;
+	return <div className='panel panel-default'>
+			<div className='panel-heading'>
+				<h4>Scheduling</h4>
+			</div>
+			<div className='scheduling-page panel-body'>
+				{ this.props.children }
+			</div>
+		</div>;
 };

@@ -27,6 +27,7 @@ Navbar.prototype.render = function () {
 			</div>
 			<div id='navbar' className='navbar-collapse collapse'>
 				<ul className='nav navbar-nav'>
+					<NavbarLink currentPath={this.props.currentPath} path='/schedules'>Schedules</NavbarLink>
 					<NavbarLink currentPath={this.props.currentPath} path='/zones'>Zones</NavbarLink>
 					<NavbarLink currentPath={this.props.currentPath} path='/sensors'>Sensors</NavbarLink>
 				</ul>

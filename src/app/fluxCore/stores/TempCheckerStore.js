@@ -3,23 +3,40 @@ var TempCheckerActions = require('../actions').TempChecker;
 var RootActions = require('../actions').Root;
 
 
-function TempCheckerStore(type, payload, state) {
-	if (!state) {
+function TempCheckersStore(type, payload, state) {
+	if (typeof state === 'undefined') {
 		state = getDefaultState();
 	}
 
 	switch (type) {
-		case RootActions.loadDashboard.actionType:
 		case TempCheckerActions.load.actionType:
-			state = Map(payload.tempChecker);
+		case RootActions.loadDashboard.actionType:
+			state = update(payload.tempChecker, state);
 			break;
 	}
 
 	return state;
 }
 
-module.exports = TempCheckerStore;
+module.exports = TempCheckersStore;
 
 function getDefaultState() {
-	return Map();
+	return Map({
+
+	});
+}
+
+function update(tempChecker, state) {
+	if (!tempChecker) {
+		return state;
+	}
+
+	if (tempChecker.loading) {
+		state = state.merge(tempChecker);
+	}
+	else {
+		state = Map(tempChecker);
+	}
+
+	return state;
 }

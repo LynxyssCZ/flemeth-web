@@ -3,23 +3,40 @@ var SwitcherActions = require('../actions').Switcher;
 var RootActions = require('../actions').Root;
 
 
-function SwitcherStore(type, payload, state) {
-	if (!state) {
+function SwitchersStore(type, payload, state) {
+	if (typeof state === 'undefined') {
 		state = getDefaultState();
 	}
 
 	switch (type) {
-		case RootActions.loadDashboard.actionType:
 		case SwitcherActions.load.actionType:
-			state = Map(payload.switcher);
+		case RootActions.loadDashboard.actionType:
+			state = update(payload.switcher, state);
 			break;
 	}
 
 	return state;
 }
 
-module.exports = SwitcherStore;
+module.exports = SwitchersStore;
 
 function getDefaultState() {
-	return Map();
+	return Map({
+
+	});
+}
+
+function update(switcher, state) {
+	if (!switcher) {
+		return state;
+	}
+
+	if (switcher.loading) {
+		state = state.merge(switcher);
+	}
+	else {
+		state = Map(switcher);
+	}
+
+	return state;
 }
