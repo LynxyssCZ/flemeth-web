@@ -9,7 +9,7 @@ var SwitcherInfo = function(props, context) {
 }; SwitcherInfo.prototype.constructor = SwitcherInfo;
 inherits(SwitcherInfo, React.Component);
 module.exports = SwitcherInfo;
-
+SwitcherInfo.displayName = 'SwitcherInfo';
 SwitcherInfo.proptypes = {
 	switcherState: React.PropTypes.object.isRequired
 };

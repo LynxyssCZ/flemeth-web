@@ -23,6 +23,7 @@
     "bluebird": "^2.10.2",
     "classnames": "^2.2.0",
     "fluxerino": "lynxysscz/fluxerino",
+    "highcharts": "^4.1.10",
     "history": "^1.12.6",
     "immutable": "^3.7.5",
     "moment": "^2.10.6",

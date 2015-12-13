@@ -7,17 +7,9 @@ var ZonesPage = function(props, context) {
 }; ZonesPage.prototype.constructor = ZonesPage;
 inherits(ZonesPage, React.Component);
 module.exports = ZonesPage;
-
+ZonesPage.displayName = 'ZonesPage';
 ZonesPage.proptypes = {
-
-};
-
-ZonesPage.childContextTypes = {
-
-};
-
-ZonesPage.prototype.getChildContext = function () {
-	return {};
+	container: React.PropTypes.object.isRequired
 };
 
 ZonesPage.prototype.render = function () {

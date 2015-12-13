@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'production' && process.platform !== 'win32') {
 var scripts = [
 	{path: '//code.jquery.com/jquery-2.1.4.min.js'},
 	{path: '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'},
+	{path: assetsRoot + '/js/react.min.js'},
 	{path: assetsRoot + '/js/vendor.min.js'},
 	{path: assetsRoot + '/js/app.min.js'}
 ];

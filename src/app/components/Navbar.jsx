@@ -10,6 +10,7 @@ var Navbar = function(props, context) {
 inherits(Navbar, React.Component);
 module.exports = Navbar;
 
+Navbar.displayName = 'Navbar';
 Navbar.proptypes = {
 	currentPath: React.PropTypes.string
 };

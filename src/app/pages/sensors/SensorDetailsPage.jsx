@@ -8,8 +8,9 @@ var SensorDetailsPage = function(props, context) {
 inherits(SensorDetailsPage, React.Component);
 module.exports = SensorDetailsPage;
 
+SensorDetailsPage.displayName = 'SensorDetailsPage';
 SensorDetailsPage.proptypes = {
-
+	container: React.PropTypes.object.isRequired
 };
 
 SensorDetailsPage.prototype.render = function () {

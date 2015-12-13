@@ -8,8 +8,9 @@ var SchedulingPage = function(props, context) {
 inherits(SchedulingPage, React.Component);
 module.exports = SchedulingPage;
 
-SchedulingPage.contextTypes = {
-
+SchedulingPage.displayName = 'SchedulingPage';
+SchedulingPage.proptypes = {
+	container: React.PropTypes.object.isRequired
 };
 
 SchedulingPage.prototype.render = function () {

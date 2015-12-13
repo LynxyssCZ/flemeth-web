@@ -8,16 +8,9 @@ var SensorsPage = function(props, context) {
 inherits(SensorsPage, React.Component);
 module.exports = SensorsPage;
 
+SensorsPage.displayName = 'SensorsPage';
 SensorsPage.proptypes = {
-
-};
-
-SensorsPage.childContextTypes = {
-
-};
-
-SensorsPage.prototype.getChildContext = function () {
-	return {};
+	container: React.PropTypes.object.isRequired
 };
 
 SensorsPage.prototype.render = function () {

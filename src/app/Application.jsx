@@ -9,10 +9,9 @@ var Application = function(props, context) {
 inherits(Application, React.Component);
 module.exports = Application;
 
+Application.displayName = 'Application';
 // Router related props
-Application.proptypes = {};
-
-Application.contextTypes = {
+Application.proptypes = {
 	container: React.PropTypes.object.isRequired
 };
 

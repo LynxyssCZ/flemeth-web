@@ -8,7 +8,7 @@ var TempCheckerInfo = function(props, context) {
 }; TempCheckerInfo.prototype.constructor = TempCheckerInfo;
 inherits(TempCheckerInfo, React.Component);
 module.exports = TempCheckerInfo;
-
+TempCheckerInfo.displayName = 'TempCheckerInfo';
 TempCheckerInfo.proptypes = {
 	tempChecker: React.PropTypes.object.isRequired,
 	zones: React.PropTypes.object.isRequired

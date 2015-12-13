@@ -16,9 +16,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "amcharts3": "~3.17.3"
-  },
+  "dependencies": {},
   "moduleType": [
     "node"
   ]

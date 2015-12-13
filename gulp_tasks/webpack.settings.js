@@ -36,8 +36,12 @@ module.exports = {
 	},
 	devServer: {
 		publicPath: path.join('/', outputPath),
+		quiet: true,
 		stats: {
-			colors: true
+			colors: true,
+			warnings: false,
+			timings: true,
+			chunks: false
 		}
 	}
 };

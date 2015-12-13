@@ -10,6 +10,7 @@ var NavbarLink = function(props, context) {
 inherits(NavbarLink, React.Component);
 module.exports = NavbarLink;
 
+NavbarLink.displayName = 'NavbarLink';
 NavbarLink.proptypes = {
 	currentPath: React.PropTypes.string,
 	className: React.PropTypes.string,

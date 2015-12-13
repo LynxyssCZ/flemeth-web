@@ -17,12 +17,13 @@ var DashboardPage = function(props, context) {
 inherits(DashboardPage, React.Component);
 module.exports = DashboardPage;
 
-DashboardPage.contextTypes = {
+DashboardPage.displayName = 'DashboardPage';
+DashboardPage.propTypes = {
 	container: React.PropTypes.object.isRequired
 };
 
-DashboardPage.prototype.selectState = function (props, context) {
-	return context.container.getState([
+DashboardPage.prototype.selectState = function (props) {
+	return props.container.getState([
 		'Override',
 		'Root',
 		'Switcher',
@@ -36,7 +37,7 @@ DashboardPage.prototype.update = function () {
 };
 
 DashboardPage.prototype.componentDidMount = function () {
-	var container = this.context.container;
+	var container = this.props.container;
 	var dashboardState = this.state.Root.get('dashboard');
 
 	this.subKey = container.subscribe([
@@ -57,7 +58,7 @@ DashboardPage.prototype.componentDidMount = function () {
 };
 
 DashboardPage.prototype.componentWillUnmount = function () {
-	this.context.container.unsubscribe(this.subKey);
+	this.props.container.unsubscribe(this.subKey);
 	global.clearInterval(this.updateTask);
 };
 
@@ -76,7 +77,7 @@ DashboardPage.prototype.render = function () {
 	return <div className='dashboard-page'>
 		<ZonesHistory className='col-md-12'/>
 		<TempCheckerInfo className='col-md-4' tempChecker={this.state.TempChecker} zones={this.state.Zones} />
-		<OverrideInfo className='col-md-4' override={this.state.Override} />
+		<OverrideInfo className='col-md-4' override={this.state.Override} container={this.props.container} />
 		<SwitcherInfo className='col-md-4' switcherState={this.state.Switcher} />
 	</div>;
 };

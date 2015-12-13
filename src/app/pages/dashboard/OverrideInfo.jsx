@@ -23,12 +23,9 @@ var OverrideInfo = function(props, context) {
 }; OverrideInfo.prototype.constructor = OverrideInfo;
 inherits(OverrideInfo, React.Component);
 module.exports = OverrideInfo;
-
-OverrideInfo.contextTypes = {
-	container: React.PropTypes.object.isRequired
-};
-
+OverrideInfo.displayName = 'OverrideInfo';
 OverrideInfo.proptypes = {
+	container: React.PropTypes.object.isRequired,
 	override: React.PropTypes.object.isRequired
 };
 
@@ -109,7 +106,7 @@ OverrideInfo.prototype.renderForm = function () {
 };
 
 OverrideInfo.prototype._onDelete = function () {
-	this.context.container.push(this.context.container.actions.Override.remove);
+	this.props.container.push(this.props.container.actions.Override.remove);
 };
 
 OverrideInfo.prototype._onUpdate = function () {
@@ -129,7 +126,7 @@ OverrideInfo.prototype._onSubmit = function (event) {
 		length: this.state.length
 	};
 
-	this.context.container.push(this.context.container.actions.Override.create, [
+	this.props.container.push(this.props.container.actions.Override.create, [
 		values
 	]);
 	this.setState(defaultState);

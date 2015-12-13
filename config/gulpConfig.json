@@ -6,9 +6,22 @@
     "makeMaps": true,
     "chunks": {
       "app": ["./src/client/js/index.js"],
-      "vendor": ["classnames", "object-assign", "url", "immutable", "react", "react-dom", "react-router", "bluebird", "moment"]
+      "vendor": [
+		  "superagent",
+		  "classnames",
+		  "object-assign",
+		  "url",
+		  "immutable",
+		  "bluebird",
+		  "moment",
+		  "highcharts",
+		  "object-hash",
+		  "fluxerino"
+	  ],
+	  "react": ["react", "react-dom", "react-router"]
     },
-    "commonChunks": ["vendor"]
+    "commonChunks": ["vendor", "react"],
+	"externals": []
   },
   "bower": {
     "copiedDirs": [

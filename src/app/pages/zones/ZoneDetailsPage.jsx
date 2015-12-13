@@ -8,8 +8,9 @@ var ZoneDetailsPage = function(props, context) {
 inherits(ZoneDetailsPage, React.Component);
 module.exports = ZoneDetailsPage;
 
+ZoneDetailsPage.displayName = 'ZoneDetailsPage';
 ZoneDetailsPage.proptypes = {
-
+	container: React.PropTypes.object.isRequired
 };
 
 ZoneDetailsPage.prototype.render = function () {
