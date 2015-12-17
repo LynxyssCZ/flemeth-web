@@ -75,7 +75,7 @@ DashboardPage.prototype.isFresh = function (dashboardState) {
 
 DashboardPage.prototype.render = function () {
 	return <div className='dashboard-page'>
-		<ZonesHistory className='col-md-12'/>
+		<ZonesHistory className='col-md-12' zones={this.state.Zones}/>
 		<TempCheckerInfo className='col-md-4' tempChecker={this.state.TempChecker} zones={this.state.Zones} />
 		<OverrideInfo className='col-md-4' override={this.state.Override} container={this.props.container} />
 		<SwitcherInfo className='col-md-4' switcherState={this.state.Switcher} />

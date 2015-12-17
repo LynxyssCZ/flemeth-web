@@ -1,10 +1,9 @@
-var inherits = require('util').inherits;
-var React = require('react');
-var Highcharts = require('highcharts');
-var Hash = require('object-hash');
-var assign = require('object-assign');
+const inherits = require('util').inherits;
+const React = require('react');
+const Highcharts = require('highcharts');
+const Hash = require('object-hash');
 
-var HighChart = function(props, context) {
+const HighChart = function(props, context) {
 	React.Component.call(this, props, context);
 
 	this.state = {};
@@ -14,7 +13,26 @@ module.exports = HighChart;
 
 HighChart.displayName = 'HighChart';
 HighChart.proptypes = {
-	options: React.PropTypes.object
+	chart: React.PropTypes.object,
+	colors: React.PropTypes.array,
+	credits: React.PropTypes.object,
+	data: React.PropTypes.object,
+	drilldown: React.PropTypes.object,
+	exporting: React.PropTypes.object,
+	labels: React.PropTypes.object,
+	lang: React.PropTypes.object,
+	legend: React.PropTypes.object,
+	loading: React.PropTypes.object,
+	navigation: React.PropTypes.object,
+	noData: React.PropTypes.object,
+	pane: React.PropTypes.object,
+	plotOptions: React.PropTypes.object,
+	series: React.PropTypes.array,
+	subtitle: React.PropTypes.object,
+	title: React.PropTypes.object,
+	tooltip: React.PropTypes.object,
+	xAxis: React.PropTypes.object,
+	yAxis: React.PropTypes.object
 };
 
 HighChart.prototype.getChart = function () {
@@ -30,19 +48,17 @@ HighChart.prototype.addSeries = function (series) {
 };
 
 HighChart.prototype.shouldComponentUpdate = function (nextProps) {
-	return Hash(this.props.options) !== Hash(nextProps.options);
+	return Hash(this.props) !== Hash(nextProps);
 };
 
 HighChart.prototype.componentDidMount = function () {
-	var chartConfig = assign({}, this.props.options.chart, {
-		renderTo: this.refs.canvas
+	this.renderChart({
+		...this.props,
+		chart: {
+			...this.props.chart,
+			renderTo: this.refs.canvas
+		}
 	});
-
-	var config = assign({}, this.props.options, {
-		chart: chartConfig
-	});
-
-	this.renderChart(config);
 };
 
 HighChart.prototype.componentWillUnmount = function () {
@@ -53,15 +69,13 @@ HighChart.prototype.componentWillUnmount = function () {
 };
 
 HighChart.prototype.componentDidUpdate = function () {
-	var chartConfig = assign({}, this.props.options.chart, {
-		renderTo: this.refs.canvas
+	this.renderChart({
+		...this.props,
+		chart: {
+			...this.props.chart,
+			renderTo: this.refs.canvas
+		}
 	});
-
-	var config = assign({}, this.props.options, {
-		chart: chartConfig
-	});
-
-	this.renderChart(config);
 };
 
 HighChart.prototype.render = function () {

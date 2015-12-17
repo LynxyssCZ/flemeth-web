@@ -33,6 +33,10 @@
     },
     "extends": "eslint:recommended",
     "ecmaFeatures": {
+        "classes": true,
+        "spread": true,
+        "destructuring": true,
+        "blockBindings": true,
         "jsx": true,
         "experimentalObjectRestSpread": true
     },
