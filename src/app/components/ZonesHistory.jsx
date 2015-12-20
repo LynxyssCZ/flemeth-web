@@ -43,6 +43,16 @@ const chartOptions = {
 			step: 2
 		}
 	},
+	lang: {
+		noData: 'Snapshots not loaded yet'
+	},
+	noData: {
+		style: {
+			fontWeight: 'bold',
+			fontSize: '15px',
+			color: '#303030'
+		}
+	},
 	tooltip: {
 		shared: true,
 		valueSuffix: '°C'
@@ -56,12 +66,15 @@ class ZonesHistory extends React.Component {
 		this.state = {};
 	}
 
-	render() {
-		var series = [];
+	shouldComponentUpdate(newProps) {
+		return !(
+			this.props.zones.equals(newProps.zones)
+			&& this.props.fetchSnapshots !== newProps.fetchSnapshots
+		);
+	}
 
-		this.props.zones.forEach(function() {
-			console.log(arguments);
-		});
+	render() {
+		const series = this.getSeries();
 
 		return <div className={this.props.className}>
 			<div className={ClassNames('zones-history panel panel-default')}>
@@ -74,12 +87,26 @@ class ZonesHistory extends React.Component {
 			</div>
 		</div>;
 	}
+
+	getSeries() {
+		return this.props.zones.map(function(zone, key) {
+			const zoneDef = {
+				id: zone.get('id'),
+				name: zone.get('name')
+			};
+
+			if (key === 'global') {
+				zoneDef.name = 'Global';
+			}
+
+			return zoneDef;
+		}).toArray();
+	}
 }
 module.exports = ZonesHistory;
 
 ZonesHistory.displayName = 'ZonesHistory';
 ZonesHistory.proptypes = {
-	tempChecker: React.PropTypes.object.isRequired,
 	zones: React.PropTypes.object.isRequired,
-	fetchZonesValues: React.PropTypes.func.isRequired
+	fetchSnapshots: React.PropTypes.func.isRequired
 };

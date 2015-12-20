@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var History = require('history/lib/createBrowserHistory');
 var assign = require('object-assign');
+var HighCharts = require('highcharts');
+
 var Router = require('react-router').Router;
 var App = require('../../app');
 var ServerApi = require('./ServerApi');
@@ -26,6 +28,14 @@ function createElement(component, props) {
 		container: core
 	}, props));
 }
+
+require('highcharts/lib/modules/no-data-to-display')(HighCharts);
+
+HighCharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
 
 //
 // function flattenRoutes(plainRoutes, root) {
