@@ -3,7 +3,7 @@ var routes = ['/', '/zones', '/sensors', '/sensors/{sensorId}', '/schedules'];
 
 var assetsRoot = '/dist';
 
-if (process.env.NODE_ENV !== 'production' && process.platform !== 'win32') {
+if (process.env.NODE_ENV !== 'production') {
 	assetsRoot = '//127.0.0.1:8090/dist/client';
 }
 

@@ -5,11 +5,10 @@ module.exports = tagActions({
 	Plans: require('./PlansActions'),
 	Root: require('./RootActions'),
 	Sensors: require('./SensorsActions'),
-	SensorsValues: require('./SensorsValuesActions'),
 	Settings: require('./SettingsActions'),
 	Schedules: require('./SchedulesActions'),
+	Snapshots: require('./SnapshotsActions'),
 	Switcher: require('./SwitcherActions'),
 	TempChecker: require('./TempCheckerActions'),
-	Zones: require('./ZonesActions'),
-	ZonesTemps: require('./ZonesTempsActions')
+	Zones: require('./ZonesActions')
 });

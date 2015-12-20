@@ -1,4 +1,5 @@
 var path = require('path');
+var url = require('url');
 var webpack = require('webpack');
 var config = require('../config/gulpConfig.json');
 var ifyConfig = config.browserify;
@@ -24,7 +25,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, '..', outputPath),
-		publicPath: path.join('/', outputPath),
+		publicPath: url.resolve('/', outputPath),
 		filename: '[name].min.js',
 		chunkFilename: '[id].bundle.js',
 		sourceMapFilename: '[file].map'
@@ -35,7 +36,7 @@ module.exports = {
 		extensions: ['', '.js', '.jsx']
 	},
 	devServer: {
-		publicPath: path.join('/', outputPath),
+		publicPath: url.resolve('/', outputPath),
 		quiet: true,
 		stats: {
 			colors: true,
