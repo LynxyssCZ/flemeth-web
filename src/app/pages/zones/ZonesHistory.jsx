@@ -128,7 +128,7 @@ class ZonesHistory extends React.Component {
 		}
 
 		var snapshotsData = this.getSnapshotsData(nextProps.zonesSnapshots, this.state.lastTime);
-		var addMethod = this.state.lastTime ? 'addPoint' : 'setData';
+		var setData = !this.state.lastTime;
 
 		this.setState({
 			lastTime: nextProps.zonesSnapshots.get('lastTime'),
@@ -138,7 +138,14 @@ class ZonesHistory extends React.Component {
 		return Object.keys(snapshotsData).filter(function(zoneId) {
 			return this.props.zones.has(zoneId);
 		}, this).forEach(function updateSeries(seriesId) {
-			chart[addMethod](seriesId, snapshotsData[seriesId]);
+			if (setData) {
+				chart.setData(seriesId, snapshotsData[seriesId]);
+			}
+			else {
+				snapshotsData[seriesId].forEach(function addPoint(point) {
+					chart.addPoint(seriesId, point);
+				});
+			}
 		});
 	}
 

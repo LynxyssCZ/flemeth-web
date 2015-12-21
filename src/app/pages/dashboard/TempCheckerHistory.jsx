@@ -118,14 +118,21 @@ class TempCheckerHistory extends React.Component {
 		}
 
 		var snapshotsData = this.getSnapshotsData(nextProps.tempCheckerSnapshots, this.state.lastTime);
-		var addMethod = this.state.lastTime ? 'addPoint' : 'setData';
+		var setData = !this.state.lastTime;
 
 		this.setState({
 			lastTime: nextProps.tempCheckerSnapshots.get('lastTime')
 		});
 
 		return Object.keys(snapshotsData).forEach(function updateSeries(seriesId) {
-			chart[addMethod](seriesId, snapshotsData[seriesId]);
+			if (setData) {
+				chart.setData(seriesId, snapshotsData[seriesId]);
+			}
+			else {
+				snapshotsData[seriesId].forEach(function addPoint(point) {
+					chart.addPoint(seriesId, point);
+				});
+			}
 		});
 	}
 
