@@ -2,7 +2,7 @@ var React = require('react');
 var SwitcherInfo = require('./SwitcherInfo');
 var TempCheckerInfo = require('./TempCheckerInfo');
 var OverrideInfo = require('./OverrideInfo');
-var ZonesHistory = require('../../components/ZonesHistory');
+var TempCheckerHistory = require('./TempCheckerHistory');
 
 var maxAge = 5 * 60 * 1000;
 
@@ -52,10 +52,10 @@ class DashboardPage extends React.Component {
 
 	updateDashboard() {
 		var container = this.props.container;
-		var lastTime = this.state.Snapshots.getIn(['zones_temps', 'lastTime']);
+		var lastTime = this.state.Snapshots.getIn(['temp_checker', 'lastTime']);
 
 		container.push(container.actions.Root.loadDashboard);
-		container.push(container.actions.Snapshots.load, [(lastTime ? lastTime + 1 : null), null, 'zones_temps']);
+		container.push(container.actions.Snapshots.load, [(lastTime ? lastTime + 1 : null), null, 'temp_checker']);
 	}
 
 	componentWillUnmount() {
@@ -76,7 +76,7 @@ class DashboardPage extends React.Component {
 
 	render() {
 		return <div className='dashboard-page'>
-			<ZonesHistory className='col-md-12' zones={this.state.Zones} zonesSnapshots={this.state.Snapshots.get('zones_temps')}/>
+			<TempCheckerHistory className='col-md-12' tempCheckerSnapshots={this.state.Snapshots.get('temp_checker')}/>
 			<TempCheckerInfo className='col-md-4' tempChecker={this.state.TempChecker} zones={this.state.Zones} />
 			<OverrideInfo className='col-md-4' override={this.state.Override} container={this.props.container} />
 			<SwitcherInfo className='col-md-4' switcherState={this.state.Switcher} />

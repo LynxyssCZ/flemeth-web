@@ -13,12 +13,7 @@ ZonesPage.proptypes = {
 };
 
 ZonesPage.prototype.render = function () {
-	return <div className='panel panel-default'>
-			<div className='panel-heading'>
-				<h4>ZonesPage</h4>
-			</div>
-			<div className='zones-page panel-body'>
-				{ this.props.children }
-			</div>
+	return <div className='zones-page'>
+			{ this.props.children }
 		</div>;
 };

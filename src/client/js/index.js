@@ -31,6 +31,7 @@ function createElement(component, props) {
 
 require('highcharts/lib/modules/no-data-to-display')(HighCharts);
 require('highcharts/lib/modules/exporting')(HighCharts);
+require('highcharts/lib/highcharts-more')(HighCharts);
 
 HighCharts.setOptions({
 	global: {

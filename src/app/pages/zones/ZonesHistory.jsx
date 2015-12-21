@@ -1,7 +1,7 @@
 'use strict';
 const React = require('react');
 const ClassNames = require('classnames');
-const HighChart = require('./HighChart');
+const HighChart = require('../../components/HighChart');
 
 
 const chartOptions = {
@@ -118,40 +118,28 @@ class ZonesHistory extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		var snapshotsData;
 		var chart = this.refs.chart;
 
-		if (!chart) {
+		if (!chart
+			|| !nextProps.zonesSnapshots
+			|| this.state.lastTime >= nextProps.zonesSnapshots.get('lastTime')
+		) {
 			return;
 		}
 
-		if (this.state.lastTime && nextProps.zonesSnapshots) {
-			if (this.state.lastTime >= nextProps.zonesSnapshots.get('lastTime')) {
-				return;
-			}
+		var snapshotsData = this.getSnapshotsData(nextProps.zonesSnapshots, this.state.lastTime);
+		var addMethod = this.state.lastTime ? 'addPoint' : 'setData';
 
-			snapshotsData = this.getSnapshotsData(nextProps.zonesSnapshots, this.state.lastTime);
+		this.setState({
+			lastTime: nextProps.zonesSnapshots.get('lastTime'),
+			initialData: snapshotsData
+		});
 
-			return Object.keys(snapshotsData).forEach(function updateSeries(seriesId) {
-				if (!nextProps.zones.has(seriesId)) {
-					return;
-				}
-
-				chart.addPoint(seriesId, snapshotsData[seriesId]);
-			});
-		}
-		else if (nextProps.zonesSnapshots) {
-			// Set data anew
-			snapshotsData = this.getSnapshotsData(nextProps.zonesSnapshots);
-
-			return Object.keys(snapshotsData).forEach(function seedSeries(seriesId) {
-				if (!nextProps.zones.has(seriesId)) {
-					return;
-				}
-
-				chart.setData(seriesId, snapshotsData[seriesId]);
-			});
-		}
+		return Object.keys(snapshotsData).filter(function(zoneId) {
+			return this.props.zones.has(zoneId);
+		}, this).forEach(function updateSeries(seriesId) {
+			chart[addMethod](seriesId, snapshotsData[seriesId]);
+		});
 	}
 
 	render() {
