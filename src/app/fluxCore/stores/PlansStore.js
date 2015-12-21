@@ -8,7 +8,7 @@ function PlansStore(type, payload, state) {
 
 	switch (type) {
 		case PlansActions.load.actionType:
-			state = update(payload.plans, getDefaultState());
+			state = update(payload.plans, state);
 			break;
 		case PlansActions.update.actionType:
 		case PlansActions.create.actionType:
@@ -34,6 +34,8 @@ function createPlan(initialData) {
 
 function update(plans, state) {
 	if (plans) {
+		const plansIds = [];
+
 		plans.forEach(function(plan) {
 			var newPlan;
 			if (state.has(plan.id)) {
@@ -43,7 +45,12 @@ function update(plans, state) {
 				newPlan = createPlan(plan);
 			}
 
-			state = state.set(newPlan.get('id'), newPlan);
+			state = state.set(plan.id, newPlan);
+			plansIds.push(plan.id);
+		});
+
+		state = state.filter(function(plan, planId) {
+			return (plansIds.indexOf(planId) > -1);
 		});
 	}
 

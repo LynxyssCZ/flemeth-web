@@ -8,7 +8,7 @@ function SettingsStore(type, payload, state) {
 
 	switch (type) {
 		case SettingsActions.load.actionType:
-			state = update(payload.settings, getDefaultState());
+			state = update(payload.settings, state);
 			break;
 		case SettingsActions.update.actionType:
 			state = update(payload.settings, state);
@@ -33,10 +33,23 @@ function createSetting(initialData) {
 
 function update(settings, state) {
 	if (settings) {
-		settings.forEach(function(setting) {
-			var newSetting = createSetting(setting);
+		const settingsIds = [];
 
-			state = state.set(newSetting.get('key'), newSetting);
+		settings.forEach(function(setting) {
+			var newSetting;
+			if (state.has(setting.id)) {
+				newSetting = state.get(setting.id).merge(Map(setting));
+			}
+			else {
+				newSetting = createSetting(setting);
+			}
+
+			state = state.set(setting.id, newSetting);
+			settingsIds.push(setting.id);
+		});
+
+		state = state.filter(function(setting, settingId) {
+			return (settingsIds.indexOf(settingId) > -1);
 		});
 	}
 

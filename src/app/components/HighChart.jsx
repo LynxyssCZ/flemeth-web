@@ -40,7 +40,11 @@ HighChart.prototype.getChart = function () {
 };
 
 HighChart.prototype.addPoint = function (seriesId, point) {
-	return this.chart.get(seriesId).addPoint(point);
+	return this.chart.get(seriesId).addPoint(point, true, true);
+};
+
+HighChart.prototype.setData = function (seriesId, data) {
+	return this.chart.get(seriesId).setData(data);
 };
 
 HighChart.prototype.addSeries = function (series) {

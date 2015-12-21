@@ -8,7 +8,7 @@ function SchedulesStore(type, payload, state) {
 
 	switch (type) {
 		case SchedulesActions.load.actionType:
-			state = update(payload.schedules, getDefaultState());
+			state = update(payload.schedules, state);
 			break;
 		case SchedulesActions.update.actionType:
 		case SchedulesActions.create.actionType:
@@ -34,6 +34,8 @@ function createSchedule(initialData) {
 
 function update(schedules, state) {
 	if (schedules) {
+		const schedulesIds = [];
+
 		schedules.forEach(function(schedule) {
 			var newSchedule;
 			if (state.has(schedule.id)) {
@@ -43,7 +45,12 @@ function update(schedules, state) {
 				newSchedule = createSchedule(schedule);
 			}
 
-			state = state.set(newSchedule.get('id'), newSchedule);
+			state = state.set(schedule.id, newSchedule);
+			schedulesIds.push(schedule.id);
+		});
+
+		state = state.filter(function(schedule, scheduleId) {
+			return (schedulesIds.indexOf(scheduleId) > -1);
 		});
 	}
 

@@ -11,7 +11,7 @@ function ZonesStore(type, payload, state) {
 	switch (type) {
 		case ZonesActions.load.actionType:
 		case RootActions.loadDashboard.actionType:
-			state = update(payload.zones, getDefaultState());
+			state = update(payload.zones, state);
 			break;
 		case ZonesActions.update.actionType:
 		case ZonesActions.create.actionType:
@@ -37,6 +37,8 @@ function createZone(initialData) {
 
 function update(zones, state) {
 	if (zones) {
+		const zonesIds = [];
+
 		zones.forEach(function(zone) {
 			var newZone;
 			if (state.has(zone.id)) {
@@ -46,7 +48,12 @@ function update(zones, state) {
 				newZone = createZone(zone);
 			}
 
-			state = state.set(newZone.get('id'), newZone);
+			state = state.set(zone.id, newZone);
+			zonesIds.push(zone.id);
+		});
+
+		state = state.filter(function(zone, zoneId) {
+			return (zonesIds.indexOf(zoneId) > -1);
 		});
 	}
 

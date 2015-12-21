@@ -17,9 +17,17 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				//tell webpack to use jsx-loader for all *.jsx files
 				test: /\.jsx$/,
-				loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+				exclude: /(node_modules|bower_components)/,
+				loader: 'babel-loader',
+				query: {
+					plugins: [
+						'transform-react-jsx',
+						'transform-object-rest-spread',
+						'transform-es2015-classes',
+						'transform-es2015-block-scoping'
+					]
+				}
 			}
 		]
 	},
