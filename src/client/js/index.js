@@ -29,9 +29,9 @@ function createElement(component, props) {
 	}, props));
 }
 
-require('highcharts/lib/modules/no-data-to-display')(HighCharts);
-require('highcharts/lib/modules/exporting')(HighCharts);
-require('highcharts/lib/highcharts-more')(HighCharts);
+require('highcharts/modules/no-data-to-display')(HighCharts);
+require('highcharts/modules/exporting')(HighCharts);
+require('highcharts/highcharts-more')(HighCharts);
 
 HighCharts.setOptions({
 	global: {
