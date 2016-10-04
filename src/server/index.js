@@ -56,7 +56,7 @@ class FlemethWeb {
 			method: 'GET',
 			handler: {
 				directory: {
-					path: path.join(__dirname, '../client')
+					path: path.join(__dirname, '../../dist/client')
 				}
 			}
 		});
