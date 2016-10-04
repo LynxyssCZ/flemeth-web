@@ -90,8 +90,8 @@ class ZonesHistory extends React.Component {
 			.get('data')
 			.toArray()
 			.filter(function filterSnapshots(snapshot) {
-				return snapshot.time > (startTime || 0);
-			})
+				return (snapshot.time > (startTime || 0));
+			}, this)
 			.sort(snapshotSorter)
 			.reduce(function separateSnapshots(initialData, snapshot) {
 				var temps = snapshot.data;
@@ -130,23 +130,34 @@ class ZonesHistory extends React.Component {
 		var snapshotsData = this.getSnapshotsData(nextProps.zonesSnapshots, this.state.lastTime);
 		var setData = !this.state.lastTime;
 
-		this.setState({
-			lastTime: nextProps.zonesSnapshots.get('lastTime'),
-			initialData: snapshotsData
-		});
+		if (snapshotsData) {
+			this.setState({
+				lastTime: nextProps.zonesSnapshots.get('lastTime')
+			});
 
-		return Object.keys(snapshotsData).filter(function(zoneId) {
-			return this.props.zones.has(zoneId);
-		}, this).forEach(function updateSeries(seriesId) {
+			Object.keys(snapshotsData).filter(function(zoneId) {
+				return this.props.zones.has(zoneId);
+			}, this).forEach(function updateSeries(seriesId) {
+				const series = chart.getSeries(seriesId);
+
+				if (setData) {
+					series.setData(snapshotsData[seriesId]);
+				}
+				else {
+					snapshotsData[seriesId].forEach(function addPoint(point) {
+						series.addPoint(point, false, series.data.length >= this.props.snapshotsCount);
+					}, this);
+				}
+			}, this);
+
+			chart.redraw();
+
 			if (setData) {
-				chart.setData(seriesId, snapshotsData[seriesId]);
-			}
-			else {
-				snapshotsData[seriesId].forEach(function addPoint(point) {
-					chart.addPoint(seriesId, point);
+				this.setState({
+					initialData: snapshotsData
 				});
 			}
-		});
+		}
 	}
 
 	render() {
@@ -190,8 +201,12 @@ module.exports = ZonesHistory;
 
 ZonesHistory.displayName = 'ZonesHistory';
 ZonesHistory.proptypes = {
-	zones: React.PropTypes.object.isRequired,
-	zonesSnapshots: React.PropTypes.object
+	zonesSnapshots: React.PropTypes.object,
+	snapshotsCount: React.PropTypes.number
+};
+
+ZonesHistory.defaultProps = {
+	snapshotsCount: 288
 };
 
 function snapshotSorter(a, b) {

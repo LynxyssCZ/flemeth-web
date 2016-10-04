@@ -10,6 +10,9 @@ class FlemethWeb {
 	constructor(app, options) {
 		this.app = app;
 		this.options = options;
+
+		this.registerToServer = this.registerToServer.bind(this);
+		this.registerToServer.attributes = FlemethWeb.attributes;
 	}
 
 	init(next) {
@@ -62,6 +65,11 @@ class FlemethWeb {
 		next();
 	}
 }
+
+FlemethWeb.attributes = {
+	name: 'flemeth-web',
+	version: '1.0.0'
+};
 
 FlemethWeb.routes = ['/', '/zones', '/sensors', '/sensors/{sensorId}', '/schedules'];
 FlemethWeb.assetsRoot = process.env.NODE_ENV === 'production' ? '/dist' : '//127.0.0.1:8090/dist/client';

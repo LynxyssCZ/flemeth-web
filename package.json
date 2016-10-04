@@ -23,7 +23,7 @@
     "bluebird": "^3.0.6",
     "classnames": "^2.2.1",
     "es-hash": "^1.0.4",
-    "fluxerino": "lynxysscz/fluxerino",
+    "fluxerino": "github:lynxysscz/fluxerino",
     "highcharts": "4.2.1",
     "history": "^1.17.0",
     "immutable": "^3.7.5",

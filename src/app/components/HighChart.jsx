@@ -39,8 +39,16 @@ HighChart.prototype.getChart = function () {
 	return this.chart;
 };
 
-HighChart.prototype.addPoint = function (seriesId, point) {
-	return this.chart.get(seriesId).addPoint(point, true, true);
+HighChart.prototype.getSeries = function(seriesId) {
+	return this.chart.get(seriesId);
+};
+
+HighChart.prototype.redraw = function () {
+	return this.chart.redraw();
+};
+
+HighChart.prototype.addPoint = function (seriesId, point, redraw, shift) {
+	return this.chart.get(seriesId).addPoint(point, redraw, shift);
 };
 
 HighChart.prototype.setData = function (seriesId, data) {

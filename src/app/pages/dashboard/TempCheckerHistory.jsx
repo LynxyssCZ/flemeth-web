@@ -2,6 +2,7 @@
 const React = require('react');
 const ClassNames = require('classnames');
 const HighChart = require('../../components/HighChart');
+const Highcharts = require('highcharts');
 
 
 const chartOptions = {
@@ -86,14 +87,22 @@ class TempCheckerHistory extends React.Component {
 			.get('data')
 			.toArray()
 			.filter(function filterSnapshots(snapshot) {
-				return snapshot.time > (startTime || 0);
-			})
+				return (snapshot.time > (startTime || 0));
+			}, this)
 			.sort(snapshotSorter)
 			.reduce(function separateSnapshots(initialData, snapshot) {
 				var sample = snapshot.data;
 
-				initialData.temp.push([snapshot.time, sample.temp]);
-				initialData.target.push([snapshot.time, sample.target - sample.hysteresis, sample.target + sample.hysteresis]);
+				initialData.temp.push({
+					x: snapshot.time,
+					y: sample.temp,
+					color: snapshot.state === false ? 'red' : null
+				});
+				initialData.target.push({
+					x: snapshot.time,
+					low: sample.target - sample.hysteresis,
+					high: sample.target + sample.hysteresis
+				});
 
 				return initialData;
 			}, {
@@ -120,20 +129,26 @@ class TempCheckerHistory extends React.Component {
 		var snapshotsData = this.getSnapshotsData(nextProps.tempCheckerSnapshots, this.state.lastTime);
 		var setData = !this.state.lastTime;
 
-		this.setState({
-			lastTime: nextProps.tempCheckerSnapshots.get('lastTime')
-		});
+		if (snapshotsData) {
+			this.setState({
+				lastTime: nextProps.tempCheckerSnapshots.get('lastTime')
+			});
 
-		return Object.keys(snapshotsData).forEach(function updateSeries(seriesId) {
-			if (setData) {
-				chart.setData(seriesId, snapshotsData[seriesId]);
-			}
-			else {
-				snapshotsData[seriesId].forEach(function addPoint(point) {
-					chart.addPoint(seriesId, point);
-				});
-			}
-		});
+			Object.keys(snapshotsData).forEach(function updateSeries(seriesId) {
+				const series = chart.getSeries(seriesId);
+
+				if (setData) {
+					series.setData(snapshotsData[seriesId]);
+				}
+				else {
+					snapshotsData[seriesId].forEach(function addPoint(point) {
+						series.addPoint(point, false, series.data.length >= this.props.snapshotsCount);
+					}, this);
+				}
+			}, this);
+
+			chart.redraw();
+		}
 	}
 
 	render() {
@@ -165,6 +180,8 @@ class TempCheckerHistory extends React.Component {
 				name: 'Target',
 				type: 'areasplinerange',
 				linkedTo: ':previous',
+				color: Highcharts.getOptions().colors[0],
+				lineColor: '#303030',
 				fillOpacity: 0.3,
 				zIndex: 0,
 				data: initialData ? initialData.target : null
@@ -176,7 +193,12 @@ module.exports = TempCheckerHistory;
 
 TempCheckerHistory.displayName = 'TempCheckerHistory';
 TempCheckerHistory.proptypes = {
-	tempCheckerSnapshots: React.PropTypes.object
+	tempCheckerSnapshots: React.PropTypes.object,
+	snapshotsCount: React.PropTypes.number
+};
+
+TempCheckerHistory.defaultProps = {
+	snapshotsCount: 288
 };
 
 function snapshotSorter(a, b) {
