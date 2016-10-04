@@ -42,7 +42,7 @@ class FlemethWeb {
 				watch: false
 			},
 			relativeTo: __dirname,
-			path: './src/client/views',
+			path: '../client/views',
 			context: {
 				title: 'Flemeth web',
 				links: FlemethWeb.links,

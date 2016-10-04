@@ -1,5 +1,7 @@
 var hapi = require('hapi');
-var web = require('./index.js');
+var Web = require('./src/server/index.js');
+
+const web = new Web({}, {});
 
 
 var server = new hapi.Server();
@@ -10,7 +12,7 @@ server.register([
 	require('h2o2'),
 	require('vision'),
 	{
-		register: web,
+		register: web.registerToServer,
 		options: {
 			base: ''
 		}
