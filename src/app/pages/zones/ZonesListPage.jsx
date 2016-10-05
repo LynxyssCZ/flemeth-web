@@ -1,5 +1,6 @@
 var React = require('react');
 var ZonesHistory = require('./ZonesHistory');
+var ZonesList = require('./ZonesList');
 
 
 class ZonesListPage extends React.Component {
@@ -50,15 +51,7 @@ class ZonesListPage extends React.Component {
 	render() {
 		return <div className='zones-list-page'>
 			<ZonesHistory className='col-md-12' zones={this.state.Zones} zonesSnapshots={this.state.Snapshots.get('zones_temps')}/>
-			<div className='col-md-12'>
-				<div className='panel panel-default'>
-					<div className='panel-heading'>
-						<h4>Zones List</h4>
-					</div>
-					<div className='zones-list panel-body'>
-					</div>
-				</div>
-			</div>
+			<ZonesList className='col-md-12' zones={this.state.Zones.toList().toJS()}/>
 		</div>;
 	}
 }

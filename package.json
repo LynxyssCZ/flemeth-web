@@ -43,6 +43,8 @@
     "babel-plugin-transform-es2015-classes": "^6.3.15",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
     "babel-plugin-transform-react-jsx": "^6.3.13",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
     "bourbon": "^4.2.6",
     "chai": "^3.4.1",
     "del": "^2.0.2",

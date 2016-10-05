@@ -20,11 +20,12 @@ module.exports = {
 				test: /\.jsx$/,
 				loader: 'babel-loader',
 				query: {
+					presets: [
+						'latest',
+						'react'
+					],
 					plugins: [
-						'transform-react-jsx',
-						'transform-object-rest-spread',
-						'transform-es2015-classes',
-						'transform-es2015-block-scoping'
+						'transform-object-rest-spread'
 					]
 				}
 			}
