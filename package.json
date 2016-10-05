@@ -14,10 +14,11 @@
     "url": "git+https://github.com/LynxyssCZ/flemeth-web.git"
   },
   "scripts": {
+    "preversion": "npm run build && git add ./dist",
     "start": "node index.js",
     "lint": "eslint ./src",
-    "js:watch": "webpack --colors --watch --config ./gulp_tasks/webpack.settings.js",
-    "build": "gulp"
+    "build": "gulp",
+    "js:watch": "webpack --colors --watch --config ./gulp_tasks/webpack.settings.js"
   },
   "dependencies": {
     "bluebird": "^3.0.6",

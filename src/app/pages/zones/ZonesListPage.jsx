@@ -31,7 +31,6 @@ class ZonesListPage extends React.Component {
 		], this.update);
 
 		this.updateData();
-
 		this.updateTask = window.setInterval(this.updateData.bind(this), 30 * 1000, this);
 	}
 

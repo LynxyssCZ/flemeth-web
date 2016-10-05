@@ -21,16 +21,20 @@ class ZonesList extends React.Component {
 							<th>id</th>
 							<th>Name</th>
 							<th>Value</th>
+							<th>Priority</th>
 							<th>Sensors</th>
 							<th>Update</th>
 						</tr>
 					</thead>
 					<tbody>
-						{this.props.zones.map((zone) => (
+						{this.props.zones.sort((zoneA, zoneB) => {
+							return zoneA.id > zoneB.id;
+						}).map((zone) => (
 							<tr key={zone.id}>
 								<th>{zone.id}</th>
 								<td>{zone.name}</td>
 								<td>{Number(zone.value).toFixed(2)}°</td>
+								<td>{Number(zone.priority).toFixed(2)}</td>
 								<td>{zone.sensors
 									? zone.sensors.map((sensor, index) => {
 										return <div key={index}>{sensor}</div>;

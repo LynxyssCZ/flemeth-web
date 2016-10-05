@@ -14,12 +14,7 @@ SensorsPage.proptypes = {
 };
 
 SensorsPage.prototype.render = function () {
-	return <div className='panel panel-default'>
-			<div className='panel-heading'>
-				<h4>SensorsPage</h4>
-			</div>
-			<div className='sensors-page panel-body'>
-				{ this.props.children }
-			</div>
+	return <div className='sensors-page'>
+			{ this.props.children }
 		</div>;
 };
