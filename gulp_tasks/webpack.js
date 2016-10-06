@@ -15,7 +15,7 @@ gulp.task('webpack', function(callback) {
 		gutil.log('[webpack]', stats.toString({
 			colors: true
 		}));
-		callback();
+		callback(err);
 	});
 });
 
