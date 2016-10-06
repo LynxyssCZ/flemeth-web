@@ -1,6 +1,6 @@
 {
   "name": "flemeth-web",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Flemeth web interface based on react",
   "author": "LynxyssCZ",
   "main": "./src/server/index.js",
